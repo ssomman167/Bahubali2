@@ -17,11 +17,14 @@ const connection=async ()=>{
         console.log(err)
     }
 }
+app.get("/",(req,res)=>{
+    res.send("Welcome to HomePage")
+})
 app.use("/user",authRoute)
 app.use("/post",postRoute)
 
 app.listen(process.env.PORT,()=>{
     connection()
-    console.log("server is on 8000")
+    console.log(process.env.PORT)
 })
 
