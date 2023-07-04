@@ -11,18 +11,27 @@ router.get("/",(req,res)=>{
 
 router.post('/register', async (req, res) => {
   try {
-    const { username, email, dob, role, location, password } = req.body;
+   const { username, email, dob, role, location, password } = req.body;
     // Check if the password and confirm password match
   
     // Hash the password
-   
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create a new user
-    const user = await User.create(req.body)
+    const user = new User({
+      username,
+      email,
+      dob,
+      role,
+      location,
+      password: hashedPassword,
+    });
 
-  
+    // Save the user to the database
+    await user.save();
 
-    return res.status(201).json("Done");
+    return res.status(201).json({ message: 'User registered successfully' });
+
   } catch (error) {
     console.error('Error registering user:', error);
     return res.status(500).json({ message: 'Internal server error' });
