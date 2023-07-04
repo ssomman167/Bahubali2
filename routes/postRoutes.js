@@ -4,7 +4,12 @@ const Post = require('../models/postModel');
 const authMiddleware = require('../middlwares/auth');
 
 // Create a new post
-router.post('/', authMiddleware, async (req, res) => {
+router.get("/",(req,res)=>{
+  res.send("Welcome to PostPage")
+})
+
+
+router.post('/create', authMiddleware, async (req, res) => {
   try {
     const { title, content } = req.body;
 
@@ -25,7 +30,7 @@ router.post('/', authMiddleware, async (req, res) => {
 });
 
 // Get all posts
-router.get('/', authMiddleware, async (req, res) => {
+router.get('/posts', authMiddleware, async (req, res) => {
   try {
     const posts = await Post.find();
     return res.status(200).json(posts);
@@ -36,7 +41,7 @@ router.get('/', authMiddleware, async (req, res) => {
 });
 
 // Get a specific post by ID
-router.get('/:postId', authMiddleware, async (req, res) => {
+router.get('/post/:postId', authMiddleware, async (req, res) => {
   try {
     const post = await Post.findById(req.params.postId);
     if (!post) {
