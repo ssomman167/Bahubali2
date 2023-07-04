@@ -30,7 +30,7 @@ router.post('/create', authMiddleware, async (req, res) => {
 });
 
 // Get all posts
-router.get('/posts', authMiddleware, async (req, res) => {
+router.get('/all', authMiddleware, async (req, res) => {
   try {
     const posts = await Post.find();
     return res.status(200).json(posts);
@@ -41,7 +41,7 @@ router.get('/posts', authMiddleware, async (req, res) => {
 });
 
 // Get a specific post by ID
-router.get('/post/:postId', authMiddleware, async (req, res) => {
+router.get('/single/:postId', authMiddleware, async (req, res) => {
   try {
     const post = await Post.findById(req.params.postId);
     if (!post) {
