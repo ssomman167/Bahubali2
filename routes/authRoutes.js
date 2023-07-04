@@ -30,7 +30,7 @@ router.post('/register', async (req, res) => {
     // Save the user to the database
     await user.save();
 
-    return res.status(201).json(user);
+    return res.status(201).json("Done);
   } catch (error) {
     console.error('Error registering user:', error);
     return res.status(500).json({ message: 'Internal server error' });
