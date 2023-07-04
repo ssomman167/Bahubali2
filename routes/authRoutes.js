@@ -11,24 +11,24 @@ router.get("/",(req,res)=>{
 
 router.post('/register', async (req, res) => {
   try {
-    const { username, email, dob, role, location, password } = req.body;
-    // Check if the password and confirm password match
+    // const { username, email, dob, role, location, password } = req.body;
+    // // Check if the password and confirm password match
   
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // // Hash the password
+    // const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user
-    const user = new User({
-      username,
-      email,
-      dob,
-      role,
-      location,
-      password: hashedPassword,
-    });
+    // // Create a new user
+    // const user = new User({
+    //   username,
+    //   email,
+    //   dob,
+    //   role,
+    //   location,
+    //   password: hashedPassword,
+    // });
 
-    // Save the user to the database
-    await user.save();
+    // // Save the user to the database
+    // await user.save();
 
     return res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
