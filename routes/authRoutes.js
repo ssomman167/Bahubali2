@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 
 // Registration route
-app.get("/",(req,res)=>{
+router.get("/",(req,res)=>{
   res.send("Welcome to RegisterPage")
 })
 
